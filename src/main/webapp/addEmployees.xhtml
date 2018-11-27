@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<div class="segment">
+		<div class="head">
+			<h2>Add Employees</h2>
+		</div>
+	<div>
+		<form method="POST" action="/A00911103/EmployeeServlet/action.do?method=addEmployee" accept-charset="utf-8">            
+		    <div  class="field">
+		    	<label for="idLbl">ID:</label>
+		    	<div class="input">
+		    		<input type="text" name="id" value="" id="id" title="ID"/>
+		    	</div>
+		    </div>
+		    <div  class="field">
+		    	<label for="fnLbl">First Name:</label>
+		    	<div class="input">
+		    		<input ttype="text" name="fname" value="" id="fname" title="First Name"/>
+		    	</div>
+		    </div>
+		    <div  class="field">
+		    	<label for="lnLbl">Last Name:</label>
+		    	<div class="input">
+		    		<input type="text" name="lname" value="" id="lname" title="Last Name"/>
+		    	</div>
+		    </div>
+		   <div  class="field">
+		    	<label for="lnLbl" >DOB:</label>
+		    	<div class="input">
+		    		<input type="text" name="dob" value="" id="dob" title="Date of Birth" placeholder="YYYY/MM/DD"/>
+		    	</div>
+		    </div>
+			<div  class="submit">
+				 <input type="hidden" name="action" value="service.addEmployees" />
+			    <input type="submit" name="submit" value="Add Employees" id="submit"/>
+			</div>
+		</form>
+		
+		
+		
+	</div>	
+
+	</div>
+</ui:composition>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<h:head>
+	<title>Employee Admin Tool</title>
+    <link rel="stylesheet" href="#{request.contextPath}/admin.css" type="text/css" title="no title" charset="utf-8" />
+</h:head>
+<h:body>
+	<div class="mdi">
+		<div class="columns">
+			<div class="column leftcol">
+				<ui:include src="/Employees.xhtml" />
+				<ui:include src="/Logout.xhtml" />
+			</div>
+
+			<div class="column rightcol">
+				<ui:include src="/findEmployees.xhtml" />
+				
+				<c:if test="#{request.isUserInRole('admin')}">
+					<ui:include src="/addEmployees.xhtml" />
+					<ui:include src="/deleteEmployee.xhtml" />
+				</c:if>
+			</div>
+			<div class="clear">&#160;</div>
+		</div>
+	</div>
+</h:body>
+</html>

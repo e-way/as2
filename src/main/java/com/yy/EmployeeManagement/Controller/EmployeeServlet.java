@@ -91,7 +91,7 @@ public class EmployeeServlet extends HttpServlet {
 			findEmployeeResponse(request, null, Constants.STATUS_CODE_NO_MATCH_FOUND, "No match found");
 		}
 
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/index.xhtml");
 	}
 
 	private void removeEmployee(HttpServletRequest request, HttpServletResponse response)
@@ -108,7 +108,7 @@ public class EmployeeServlet extends HttpServlet {
 			removeEmployeeResponse(request, Constants.STATUS_CODE_DELETE_UNSUCCESS, "Deleted UnSuccessful");
 		}
 
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/index.xhtml");
 	}
 
 	private void addEmployee(HttpServletRequest request, HttpServletResponse response)
@@ -135,7 +135,7 @@ public class EmployeeServlet extends HttpServlet {
 			AddEmployeeResponse(request, Constants.STATUS_CODE_OTHER_EXCEPTION, e3.toString());
 		}
 
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/index.xhtml");
 	}
 
 	private static java.sql.Date getSqlDate(String dateString) throws ParseException {
@@ -164,7 +164,7 @@ public class EmployeeServlet extends HttpServlet {
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.getSession().invalidate();
-		response.sendRedirect(request.getContextPath() + "/index.jsp");
+		response.sendRedirect(request.getContextPath() + "/index.xhtml");
 	}
 
 	private void paginate(HttpServletRequest request, HttpServletResponse response)
