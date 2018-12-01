@@ -10,16 +10,30 @@
 		<h2>Employees List</h2>
 	</div>
 	<div>
-		<table id="tt">
-		<thead>
-			<tr>
-				<th >ID</th>
-				<th >FirstName</th>
-				<th >LastName</th>
-				<th >DOB</th>
-			</tr>
-		</thead>
-	</table>
+		<h:form>
+			<p:dataTable id="table2" var="employee" value="#{employeeManager.employees}" 
+			    rows="5" paginator="true" lazy="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,15" style="width: 100%" sorted="true">
+			
+				
+
+				<p:column headerText="ID">
+					<h:outputText value="#{employee.ID}" />
+				</p:column>
+				
+				<p:column headerText="FIRSTNAME" sortBy="#{employee.firstName}">
+					<h:outputText value="#{employee.firstName}" />
+				</p:column>
+				
+				<p:column headerText="LASTNAME">
+					<h:outputText value="#{employee.lastName}" />
+				</p:column>
+				
+				<p:column headerText="DOB">
+					<h:outputText value="#{employee.DOB}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
 	</div>
 </div>
 </ui:composition>
