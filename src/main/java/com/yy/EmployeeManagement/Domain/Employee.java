@@ -1,10 +1,15 @@
 package com.yy.EmployeeManagement.Domain;
 
+import java.io.Serializable;
 import java.sql.Date;
+
+import javax.faces.bean.SessionScoped;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-public class Employee {
+@SessionScoped
+public class Employee implements Serializable{
+	private static final long serialVersionUID = -9110068445769624051L;
 	private String ID;
 	private String firstName;
 	private String lastName;

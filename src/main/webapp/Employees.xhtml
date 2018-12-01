@@ -11,9 +11,9 @@
 	</div>
 	<div>
 		<h:form>
-			<p:dataTable id="table2" var="employee" value="#{employeeManager.employees}" 
+			<p:dataTable id="table2" var="employee" value="#{employeeBean.allEmployees}" 
 			    rows="5" paginator="true" lazy="true" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15" style="width: 100%" sorted="true">
+				rowsPerPageTemplate="5,10,15" style="width: 100%" selectionMode="single" sorted="true" ajax="true">
 			
 				
 
@@ -21,7 +21,7 @@
 					<h:outputText value="#{employee.ID}" />
 				</p:column>
 				
-				<p:column headerText="FIRSTNAME" sortBy="#{employee.firstName}">
+				<p:column headerText="FIRSTNAME" sortable="true" sortBy="#{employee.firstName}">
 					<h:outputText value="#{employee.firstName}" />
 				</p:column>
 				
@@ -29,7 +29,7 @@
 					<h:outputText value="#{employee.lastName}" />
 				</p:column>
 				
-				<p:column headerText="DOB">
+				<p:column headerText="DOB" sortable="true" sortBy="#{employee.DOB}">
 					<h:outputText value="#{employee.DOB}" />
 				</p:column>
 			</p:dataTable>
