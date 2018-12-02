@@ -3,45 +3,54 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">>
 
 	<div class="segment">
 		<div class="head">
 			<h2>Add Employees</h2>
 		</div>
 	<div>
-		<form method="POST" action="/A00911103/EmployeeServlet/action.do?method=addEmployee" accept-charset="utf-8">            
+		<h:form>            
 		    <div  class="field">
 		    	<label for="idLbl">ID:</label>
 		    	<div class="input">
-		    		<input type="text" name="id" value="" id="id" title="ID"/>
+		    		<h:inputText binding="#{id}" name="id"/>
 		    	</div>
 		    </div>
 		    <div  class="field">
 		    	<label for="fnLbl">First Name:</label>
 		    	<div class="input">
-		    		<input type="text" name="fname" value="" id="fname" title="First Name"/>
+		    		<h:inputText binding="#{firstName}" name="id"/>
 		    	</div>
 		    </div>
 		    <div  class="field">
 		    	<label for="lnLbl">Last Name:</label>
 		    	<div class="input">
-		    		<input type="text" name="lname" value="" id="lname" title="Last Name"/>
+		    		<h:inputText binding="#{lastName}" name="id"/>
 		    	</div>
 		    </div>
 		   <div  class="field">
 		    	<label for="lnLbl" >DOB:</label>
 		    	<div class="input">
-		    		<input type="text" name="dob" value="" id="dob" title="Date of Birth" placeholder="YYYY/MM/DD"/>
+		    	    <h:inputText binding="#{dob}" name="id" pt:placeholder="YYYY/MM/DD"/>
 		    	</div>
 		    </div>
 			<div  class="submit">
-				 <input type="hidden" name="action" value="service.addEmployees" />
-			    <input type="submit" name="submit" value="Add Employees" id="submit"/>
+				 <h:commandButton rendered="true" value="Add Employees" ajax="true" action="#{employeeBean.addEmployee(id.value, firstName.value, lastName.value, dob.value)}">
+			    	<f:param name="id" value="#{id}" />
+			    	<f:param name="id" value="#{firstName}" />
+			    	<f:param name="id" value="#{lastName}" />
+			    	<f:param name="id" value="#{dob}" />
+				</h:commandButton>
 			</div>
-		</form>
+		</h:form>
 		
-		
+		<c:if test="#{fn:length( addResponseCode ) > 0}" >
+			<h:outputText value="Result Code: ${addResponseCode}" />
+			<h:outputText value="Result Code: ${addResponseDescription}" />
+		</c:if>
 		
 	</div>	
 

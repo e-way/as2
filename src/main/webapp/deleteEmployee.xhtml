@@ -3,28 +3,33 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 	<div class="segment">
 		<div class="head">
 			<h2>Remove an Employee</h2>
 		</div>
 		<div>
-		<form action="/A00911103/EmployeeServlet/action.do?method=removeEmployee" method="POST" accept-charset="utf-8">            
+		<h:form>            
 		    <div  class="field">
 		    	<label for="idLbl">ID:</label>
 		    	<div class="input">
-		    		<input type="text" name="id" value="" id="id" title="ID"/>
+		    		<h:inputText binding="#{employeeId}" name="id" value="A" />
 		    	</div>
 		    </div>
 		    
 			<div  class="submit">
-				 <input type="hidden" name="action" value="service.deleteEmployees" />
-			    <input type="submit" name="submit" value="Delete" id="submit"/>
+				<h:commandButton rendered="true" value="Delete" ajax="true" action="#{employeeBean.deleteEmployee(employeeId.value)}">
+			    	<f:param name="employeeId" value="#{employeeId}" />
+				</h:commandButton>
 			</div>
-		</form>
+		</h:form>
 		
-		
+		<c:if test="#{fn:length( deleteResponseCode ) > 0}" >
+			<h:outputText value="Result Code: ${deleteResponseCode}" />
+			<h:outputText value="Result Code: ${deleteResponseDescription}" />
+		</c:if>
 		
 	</div>
 

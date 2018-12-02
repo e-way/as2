@@ -4,21 +4,35 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:c="http://java.sun.com/jstl/core">
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
     <div class="segment">
       <h2>Find An Employee By ID</h2>
-      <form method="POST" action="/A00911103/EmployeeServlet/action.do?method=findEmployee" accept-charset="utf-8">  
+      <h:form>  
 			<div class="field">
 		    	<label for="idLbl">ID:</label>
 		    	<div class="input">
-		    		<input type="text" name="id" value="" id="id" title="ID"/>
+		    		<h:inputText binding="#{empId}" name="id" value="A" />
 		    	</div>
 		    </div>
-		    <div class="submit">
-				 <input type="hidden" name="action" value="service.findEmployees" />
-			    <input type="submit" name="submit" value="Search" id="submit"/>
-			</div>
-		</form>
+		    
+		    <div  class="submit">
+		    	<h:commandButton rendered="true" value="Search" ajax="true" action="#{employeeBean.findEmployeeBy(empId.value)}">
+			    	<f:param name="employeeId" value="#{employeeId}" />
+			</h:commandButton>
+		    </div>
+		    
+	  </h:form>
+			   
+		<c:if test="#{findName ne null}" >
+		    <h:outputText value="Found" />
+		    <h:outputText value="#{findName}"/>
+		</c:if>
+		<br></br>
+		<c:if test="#{fn:length( findResponseCode ) > 0}" >
+			<h:outputText value="Result Code: ${findResponseCode}" />
+			<h:outputText value="Result Code: ${findResponseDescription}" />
+		</c:if>
     </div>
 </ui:composition>
